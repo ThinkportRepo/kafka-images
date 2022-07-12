@@ -1,10 +1,11 @@
-name: Build Docker Images
-on:
-  push:
-
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        base: [zookeeper, kafka]
+
     steps:
       - uses: actions/checkout@v3
 
@@ -15,6 +16,22 @@ jobs:
           cache: 'maven'
 
       - name: Build project
-        run: mvn clean package -DskipTests -Pdocker -DCONFLUENT_PACKAGES_REPO='https://packages.confluent.io/rpm/7.0'   -DCONFLUENT_VERSION=7.0.0 -Ddocker.registry=nxt/
+        run: mvn clean install -Pdocker -Ddocker.skip-test=true -pl -jmxterm
 
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build Docker image
+        uses: docker/build-push-action@v3
+        with:
+          context: ${{ matrix.base }}
+          file: ${{ matrix.base }}/Dockerfile.ubi8
+          platforms: linux/amd64,linux/arm64
+          push: false
+          tags: ubi8-latest
+          build-args: |
+            ARTIFACT_ID=cp-${{ matrix.base }}-new
+            PROJECT_VERSION=7.0.1
