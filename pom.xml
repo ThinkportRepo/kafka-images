@@ -47,4 +47,11 @@
         <component.name>kafka</component.name>
         <io.confluent.kafka-images.version>7.0.1</io.confluent.kafka-images.version>
     </properties>
+
+    <repositories>
+        <repository>
+            <id>confluent</id>
+            <url>https://packages.confluent.io/maven/</url>
+        </repository>
+    </repositories>
 </project>
