@@ -39,7 +39,7 @@ jobs:
         with:
           context: ${{ matrix.base }}
           file: ${{ matrix.base }}/Dockerfile.ubi8
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64
           push: true
           tags: thinkportgmbh/cp-${{ matrix.base }}:7.0.1
           build-args: |
