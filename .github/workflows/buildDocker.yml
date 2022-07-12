@@ -20,7 +20,7 @@ jobs:
           cache: 'maven'
 
       - name: Build project
-        run: mvn clean install -Pdocker -Ddocker.skip-test=true -pl -jmxterm
+        run: mvn clean install -Pdocker -Ddocker.skip-test=true
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
