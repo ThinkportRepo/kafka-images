@@ -45,5 +45,5 @@ jobs:
           build-args: |
             ARTIFACT_ID=cp-${{ matrix.base }}-new
             PROJECT_VERSION=7.0.1
-            CONFLUENT_VERSION=5.4.0
-            CONFLUENT_PACKAGES_REPO=https://s3-us-west-2.amazonaws.com/confluent-packages-5.4.0/deb/5.4
+            CONFLUENT_VERSION=7.0.0
+            CONFLUENT_PACKAGES_REPO=https://packages.confluent.io/rpm/7.0
