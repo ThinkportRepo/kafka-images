@@ -46,3 +46,4 @@ jobs:
             CONFLUENT_VERSION=7.0.1
             CONFLUENT_PACKAGES_REPO=https://packages.confluent.io/rpm/7.0
             DOCKER_TAG=7.0.1
+            DOCKER_UPSTREAM_TAG=7.0.1
